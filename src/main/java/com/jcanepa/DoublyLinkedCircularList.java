@@ -2,10 +2,6 @@ package com.jcanepa;
 
 public class DoublyLinkedCircularList<T> extends DoublyLinkedList<T>
 {
-    public DoublyLinkedCircularList() {
-        super();
-    }
-
     @Override
     public void addFirst(T data) {
         super.addFirst(data);
