@@ -279,12 +279,14 @@ public class DoublyLinkedList<T> implements LinkedList<T> {
     public boolean contains(T data)
     {
         Node<T> node = head;
+        int count = 0;
 
-        while (node != null) {
+        while (node != null && count < size()) {
             if (node.getData().equals(data)) {
                 return true;
             }
             node = node.getNext();
+            count ++;
         }
         return false;
     }

@@ -1,16 +1,16 @@
 package com.jcanepa;
 
+import java.util.Objects;
 import java.util.Random;
 
-public class Person {
+public class Person{
     private final String first;
     private final String last;
     private String id;
 
     public Person(String firstName, String lastName)
     {
-        generateId();
-
+        setId(generateId());
         this.last = lastName;
         this.first = firstName;
     }
@@ -39,7 +39,7 @@ public class Person {
     /**
      * Generate a random 9-digit ID.
      */
-    private void generateId() {
+    private String generateId() {
         StringBuilder randomID = new StringBuilder();
 
         var rand = new Random();
@@ -49,7 +49,29 @@ public class Person {
                     rand.nextInt(10));
         }
 
-        id = randomID.toString();
+        return randomID.toString();
+    }
+
+    public void setId(String id)
+    {
+        this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Person)) return false;
+
+        Person person = (Person) o;
+
+        return Objects.equals(first, person.first)
+                && Objects.equals(last, person.last)
+                && Objects.equals(getId(), person.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(first, last, getId());
     }
 
     /**
