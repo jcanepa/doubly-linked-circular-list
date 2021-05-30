@@ -63,9 +63,8 @@ public class Person {
 
     @Override
     public String toString() {
-        return "Person {" +
-                "first: '" + first + '\'' +
-                ", last: '" + last + '\'' +
+        return "Person{" +
+                "name: '" + getName() + '\'' +
                 ", id: '" + id + '\'' +
                 '}';
     }
