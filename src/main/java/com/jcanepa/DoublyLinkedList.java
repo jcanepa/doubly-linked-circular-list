@@ -2,7 +2,8 @@ package com.jcanepa;
 
 import java.util.function.Predicate;
 
-public class DoublyLinkedList<T> implements LinkedList<T> {
+public class DoublyLinkedList<T> implements LinkedList<T>
+{
     protected Node<T> head;
     private int size;
 
@@ -12,7 +13,7 @@ public class DoublyLinkedList<T> implements LinkedList<T> {
     }
 
     /**
-     * Add a new node to the end of the list.
+     * Add a new node to the end of the list and the insertion result.
      * @return Whether the data was inserted successfully.
      */
     public boolean add(T data)
@@ -27,6 +28,8 @@ public class DoublyLinkedList<T> implements LinkedList<T> {
 
     /**
      * Add a new node at the given index.
+     * @param index to place a new node.
+     * @param data of type T.
      */
     @Override
     public void add(int index, T data)
@@ -63,6 +66,7 @@ public class DoublyLinkedList<T> implements LinkedList<T> {
 
     /**
      * Add a new node to the front of the list.
+     * @param data of type T.
      */
     @Override
     public void addFirst(T data)
@@ -78,6 +82,10 @@ public class DoublyLinkedList<T> implements LinkedList<T> {
         size ++;
     }
 
+    /**
+     * Add a new element to the end of the list.
+     * @param data of type T.
+     */
     @Override
     public void addLast(T data)
     {
@@ -95,6 +103,11 @@ public class DoublyLinkedList<T> implements LinkedList<T> {
         size ++;
     }
 
+    /**
+     * Remove the list node at a given index and return its data.
+     * @param index of the element to be removed.
+     * @return T data of the node removed.
+     */
     @Override
     public T remove(int index)
     {
@@ -133,7 +146,7 @@ public class DoublyLinkedList<T> implements LinkedList<T> {
     /**
      * Remove the first item in the list by detaching
      * all pointer references. Finally, return its data.
-     * @return T data
+     * @return T data of the node removed.
      */
     @Override
     public T removeFirst()
@@ -162,7 +175,7 @@ public class DoublyLinkedList<T> implements LinkedList<T> {
     /**
      * Remove the last item in the list by detaching all
      * pointer references. Finally, return the removed node's data.
-     * @return the data of type T.
+     * @return T data of the node removed.
      */
     @Override
     public T removeLast()
@@ -183,8 +196,8 @@ public class DoublyLinkedList<T> implements LinkedList<T> {
 
     /**
      * Get the node at the given index.
-     * @param index in the list
-     * @return the data of type T.
+     * @param index of the desired node.
+     * @return data of type T.
      */
     @Override
     public T get(int index)
@@ -197,10 +210,9 @@ public class DoublyLinkedList<T> implements LinkedList<T> {
     }
 
     /**
-     * Return the node at a valid given index if it exists.
-     * Otherwise, return null.
-     * @param index in the list
-     * @return The node at a valid given index
+     * Return the node at a valid given index if it exists. Otherwise, return null.
+     * @param index of the desired node.
+     * @return The node at a valid given index.
      */
     protected Node<T> getNode(int index)
     {
@@ -220,18 +232,28 @@ public class DoublyLinkedList<T> implements LinkedList<T> {
         return result;
     }
 
+
     /**
      * Return the first node that heads the list.
+     * @return the node that occupies the list's first position.
      */
     protected Node<T> getFirstNode() {
         return head;
     }
 
+    /**
+     * Return the last node in the list.
+     * @return the node that occupies the list's last position.
+     */
     protected Node<T> getLastNode()
     {
         return getNode(size() - 1);
     }
 
+    /**
+     * Get the data of the first node in the list.
+     * @return the data of type T.
+     */
     @Override
     public T getFirst()
     {
@@ -240,6 +262,10 @@ public class DoublyLinkedList<T> implements LinkedList<T> {
                 : null;
     }
 
+    /**
+     * Get the data of the last node in the list.
+     * @return the data of type T.
+     */
     @Override
     public T getLast()
     {
@@ -248,8 +274,11 @@ public class DoublyLinkedList<T> implements LinkedList<T> {
             : null;
     }
 
+
     /**
      * Get a given node's next pointer node.
+     * @param node to check.
+     * @return node next to a given node.
      */
     protected Node<T> getNextNode(Node<T> node) {
         return node.getNext();
@@ -257,16 +286,24 @@ public class DoublyLinkedList<T> implements LinkedList<T> {
 
     /**
      * Get a given node's previous pointer node.
-     */
-    protected Node<T> getPreviousNode(Node<T> node) {
+     * @param node to check.
+     * @return node previous to a given node.
+     */    protected Node<T> getPreviousNode(Node<T> node) {
         return node.getPrevious();
     }
 
+    /**
+     * Return the number of nodes within the list.
+     * @return the amount of nodes in the list.
+     */
     @Override
     public int size() {
         return size;
     }
 
+    /**
+     * Detach all nodes in the list.
+     */
     @Override
     public void clear()
     {
@@ -275,22 +312,30 @@ public class DoublyLinkedList<T> implements LinkedList<T> {
         }
     }
 
+    /**
+     * Determine whether data of type T is stored in the list.
+     * @param data of type T to check.
+     * @return if the list contains a given data.
+     */
     @Override
     public boolean contains(T data)
     {
         Node<T> node = head;
-        int count = 0;
 
-        while (node != null && count < size()) {
+        while (node != null) {
             if (node.getData().equals(data)) {
                 return true;
             }
             node = node.getNext();
-            count ++;
         }
         return false;
     }
 
+    /**
+     * Replaces the node at a specified list position with the specified element.
+     * @param index of node to replace.
+     * @param data of type T to replace the existing node with.
+     */
     @Override
     public void set(int index, T data)
     {
@@ -299,11 +344,15 @@ public class DoublyLinkedList<T> implements LinkedList<T> {
     }
 
     /**
-     * Determine if a given index is within the valid range.
+     * Determine if a given index is within a valid range of list nodes.
      */
     private final Predicate<Integer> isExisting = index ->
             index < size && index >= 0;
 
+    /**
+     * Detail the list type, size and its nodes.
+     * @return a string representation of the list and its contents.
+     */
     @Override
     public String toString()
     {

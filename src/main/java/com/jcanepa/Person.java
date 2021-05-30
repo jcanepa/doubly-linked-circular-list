@@ -3,10 +3,10 @@ package com.jcanepa;
 import java.util.Objects;
 import java.util.Random;
 
-public class Person{
-    private final String first;
-    private final String last;
+public class Person implements Comparable<Person>{
     private String id;
+    private final String last;
+    private final String first;
 
     public Person(String firstName, String lastName)
     {
@@ -40,18 +40,22 @@ public class Person{
      * Generate a random 9-digit ID.
      */
     private String generateId() {
-        StringBuilder randomID = new StringBuilder();
+        StringBuilder randomId = new StringBuilder();
 
         var rand = new Random();
 
         for (int i = 0; i < 9; i++) {
-            randomID.append(
+            randomId.append(
                     rand.nextInt(10));
         }
 
-        return randomID.toString();
+        return randomId.toString();
     }
 
+    /**
+     * Temporary to test equality for contains method in linked list classes.
+     * @// TODO: 5/30/21 Remove this method, or make it protected! 
+     */
     public void setId(String id)
     {
         this.id = id;
@@ -72,6 +76,11 @@ public class Person{
     @Override
     public int hashCode() {
         return Objects.hash(first, last, getId());
+    }
+
+    @Override
+    public int compareTo(Person o) {
+        return Integer.parseInt(id) - Integer.parseInt(o.getId());
     }
 
     /**
