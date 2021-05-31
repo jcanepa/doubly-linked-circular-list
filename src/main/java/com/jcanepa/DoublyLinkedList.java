@@ -189,13 +189,10 @@ public class DoublyLinkedList<T> implements LinkedList<T>
 
             Node<T> last = getLastNode();
 
-            // the new last
             last.getPrevious().setNext(null);
-
-            // detach last
             last.setPrevious(null);
 
-            size --;
+            decrementSize();
         }
         return data;
     }
