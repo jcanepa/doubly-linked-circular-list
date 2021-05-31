@@ -280,7 +280,6 @@ public class DoublyLinkedList<T> implements LinkedList<T>
             : null;
     }
 
-
     /**
      * Get a given node's next pointer node.
      * @param node to check.
@@ -308,11 +307,6 @@ public class DoublyLinkedList<T> implements LinkedList<T>
         head.setPrevious(null);
     }
 
-    protected void resetLastNodeNext()
-    {
-
-    }
-
     /**
      * Return the number of nodes within the list.
      * @return the amount of nodes in the list.
@@ -322,13 +316,17 @@ public class DoublyLinkedList<T> implements LinkedList<T>
         return size;
     }
 
-    protected void incrementSize()
-    {
+    /**
+     * Increase the list's size by one.
+     */
+    protected void incrementSize() {
         size ++;
     }
 
-    protected void decrementSize()
-    {
+    /**
+     * Decrease the list's size by one.
+     */
+    protected void decrementSize() {
         size --;
     }
 
