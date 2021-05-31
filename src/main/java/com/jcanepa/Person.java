@@ -1,5 +1,6 @@
 package com.jcanepa;
 
+import java.util.Comparator;
 import java.util.Objects;
 import java.util.Random;
 
@@ -30,6 +31,15 @@ public class Person implements Comparable<Person>{
     }
 
     /**
+     * @return The person's full name.
+     */
+    public String getName() {
+        return getFirstName()
+                + " "
+                + getLastName();
+    }
+
+    /**
      * @return The person's ID number.
      */
     public String getId() {
@@ -52,11 +62,7 @@ public class Person implements Comparable<Person>{
         return randomId.toString();
     }
 
-    /**
-     * Temporary to test equality for contains method in linked list classes.
-     * @// TODO: 5/30/21 Remove this method, or make it protected
-     */
-    public void setId(String id)
+    protected void setId(String id)
     {
         this.id = id;
     }
@@ -83,14 +89,19 @@ public class Person implements Comparable<Person>{
         return Integer.parseInt(id) - Integer.parseInt(o.getId());
     }
 
-    /**
-     * @return The person's full name.
-     */
-    public String getName() {
-        return getFirstName()
-                + " "
-                + getLastName();
-    }
+    public static final Comparator<Person> sortByLastName = new Comparator<Person>() {
+        @Override
+        public int compare(Person a, Person b) {
+            return a.getLastName().compareTo(b.getLastName());
+        }
+    };
+
+    public static final Comparator<Person> sortById = new Comparator<Person>() {
+        @Override
+        public int compare(Person a, Person b) {
+            return Integer.parseInt(a.getId()) - Integer.parseInt(b.getId());
+        }
+    };
 
     @Override
     public String toString() {
