@@ -33,7 +33,6 @@ public class DoublyLinkedCircularList<T> extends DoublyLinkedList<T>
         if (getLastNode() != null) {
             data = getLast();
 
-            // get the node to detach
             Node<T> last = getLastNode();
 
             // setup the new last element
@@ -82,26 +81,6 @@ public class DoublyLinkedCircularList<T> extends DoublyLinkedList<T>
             return getLastNode();
         }
         return super.getPreviousNode(node);
-    }
-
-    /**
-     * Since all nodes in a circular linked list have next and previous nodes,
-     * protect against infinite loops using a counter.
-     */
-    @Override
-    public boolean contains(T data)
-    {
-        Node<T> node = head;
-        int count = 0;
-
-        while (node != null && count < size()) {
-            if (node.getData().equals(data)) {
-                return true;
-            }
-            node = node.getNext();
-            count ++;
-        }
-        return false;
     }
 
     /**
