@@ -62,7 +62,7 @@ public class Person implements Comparable<Person>{
         return randomId.toString();
     }
 
-    protected void setId(String id)
+    private void setId(String id)
     {
         this.id = id;
     }
