@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 public class DoublyLinkedList<T> implements LinkedList<T>
 {
     protected Node<T> head;
-    private int size;
+    protected int size;
 
     public DoublyLinkedList() {
         head = null;
@@ -52,7 +52,6 @@ public class DoublyLinkedList<T> implements LinkedList<T>
         Node<T> node = new Node<>(data);
         Node<T> previous = existing.getPrevious();
 
-        // Update all three node pointers accordingly.
         if (previous != null) {
             previous.setNext(node);
             node.setPrevious(previous);
@@ -145,7 +144,7 @@ public class DoublyLinkedList<T> implements LinkedList<T>
 
     /**
      * Remove the first item in the list by detaching
-     * all pointer references. Finally, return its data.
+     * pointer references. Finally, return its data.
      * @return T data of the node removed.
      */
     @Override
@@ -162,9 +161,9 @@ public class DoublyLinkedList<T> implements LinkedList<T>
              */
             head = head.getNext();
 
-            /* Detach pointers */
+            /* Detach pointers if needed */
             if (head != null) {
-                head.setPrevious(null);
+                resetHeadPrevious();
             }
 
             size --;
@@ -186,7 +185,11 @@ public class DoublyLinkedList<T> implements LinkedList<T>
             data = getLast();
 
             Node<T> last = getLastNode();
+
+            // the new last
             last.getPrevious().setNext(null);
+
+            // detach the existing last
             last.setPrevious(null);
 
             size --;
@@ -288,8 +291,23 @@ public class DoublyLinkedList<T> implements LinkedList<T>
      * Get a given node's previous pointer node.
      * @param node to check.
      * @return node previous to a given node.
-     */    protected Node<T> getPreviousNode(Node<T> node) {
+     */
+    protected Node<T> getPreviousNode(Node<T> node) {
         return node.getPrevious();
+    }
+
+    /**
+     * Set the head's previous node.
+     * Sets value to null to detach it's pointer.
+     */
+    protected void resetHeadPrevious()
+    {
+        head.setPrevious(null);
+    }
+
+    protected void resetLastNodeNext()
+    {
+
     }
 
     /**

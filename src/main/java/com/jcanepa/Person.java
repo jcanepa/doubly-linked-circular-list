@@ -54,7 +54,7 @@ public class Person implements Comparable<Person>{
 
     /**
      * Temporary to test equality for contains method in linked list classes.
-     * @// TODO: 5/30/21 Remove this method, or make it protected! 
+     * @// TODO: 5/30/21 Remove this method, or make it protected
      */
     public void setId(String id)
     {
