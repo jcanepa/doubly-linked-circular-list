@@ -84,14 +84,19 @@ public class DoublyLinkedListTest {
     public void testRemove()
     {
         var list = new DoublyLinkedList<String>();
-        String string = "foo";
+        String string1 = "first";
+        String string2 = "middle";
+        String string3 = "last";
 
-        list.add(string);
+        list.add(string1);
+        list.add(string2);
+        list.add(string3);
+        assertEquals(3, list.size());
 
-        list.remove(0);
+        list.remove(1);
 
-        assertEquals(0, list.size());
-        assertFalse(list.contains(string));
+        assertEquals(2, list.size());
+        assertFalse(list.contains(string2));
     }
 
     @Test

@@ -44,7 +44,7 @@ public class DoublyLinkedCircularList<T> extends DoublyLinkedList<T>
             last.setPrevious(null);
             last.setNext(null);
 
-            size --;
+            decrementSize();
         }
         return data;
     }

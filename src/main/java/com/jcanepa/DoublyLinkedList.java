@@ -4,8 +4,8 @@ import java.util.function.Predicate;
 
 public class DoublyLinkedList<T> implements LinkedList<T>
 {
-    protected Node<T> head;
-    protected int size;
+    private Node<T> head;
+    private int size;
 
     public DoublyLinkedList() {
         head = null;
@@ -60,7 +60,7 @@ public class DoublyLinkedList<T> implements LinkedList<T>
         node.setNext(existing);
         existing.setPrevious(node);
 
-        size ++;
+        incrementSize();
     }
 
     /**
@@ -78,7 +78,7 @@ public class DoublyLinkedList<T> implements LinkedList<T>
         }
 
         head = node;
-        size ++;
+        incrementSize();
     }
 
     /**
@@ -99,7 +99,7 @@ public class DoublyLinkedList<T> implements LinkedList<T>
         last.setNext(node);
         node.setPrevious(last);
 
-        size ++;
+        incrementSize();
     }
 
     /**
@@ -136,8 +136,11 @@ public class DoublyLinkedList<T> implements LinkedList<T>
             }
 
             data = node.getData();
+
             node.setPrevious(null);
             node.setNext(null);
+
+            decrementSize();
         }
         return data;
     }
@@ -166,7 +169,7 @@ public class DoublyLinkedList<T> implements LinkedList<T>
                 resetHeadPrevious();
             }
 
-            size --;
+            decrementSize();
         }
         return data;
     }
@@ -189,7 +192,7 @@ public class DoublyLinkedList<T> implements LinkedList<T>
             // the new last
             last.getPrevious().setNext(null);
 
-            // detach the existing last
+            // detach last
             last.setPrevious(null);
 
             size --;
@@ -317,6 +320,16 @@ public class DoublyLinkedList<T> implements LinkedList<T>
     @Override
     public int size() {
         return size;
+    }
+
+    protected void incrementSize()
+    {
+        size ++;
+    }
+
+    protected void decrementSize()
+    {
+        size --;
     }
 
     /**
