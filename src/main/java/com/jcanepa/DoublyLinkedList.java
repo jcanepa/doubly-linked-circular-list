@@ -18,14 +18,12 @@ public class DoublyLinkedList<T> implements LinkedList<T>
      */
     public boolean add(T data)
     {
-        if (contains(data)) return false;
-
         int prior = size();
 
         addLast(data);
 
         return (prior + 1) == size()
-                && contains(data);
+                && getLast() == data;
     }
 
     /**

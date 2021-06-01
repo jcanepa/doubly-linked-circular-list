@@ -20,17 +20,6 @@ public class DoublyLinkedListTest {
     }
 
     @Test
-    public void testAddsNoDuplicates()
-    {
-        var list = new DoublyLinkedList<String>();
-        var string = "foo";
-
-        assertTrue(list.add(string));
-        assertFalse(list.add(string));
-        assertEquals(1, list.size());
-    }
-
-    @Test
     public void testAddAtIndex()
     {
         var list = new DoublyLinkedList<String>();
