@@ -51,12 +51,9 @@ public class DoublyLinkedList<T> implements LinkedList<T>
 
         Node<T> node = new Node<>(data);
         Node<T> previous = existing.getPrevious();
-
-        if (previous != null) {
-            previous.setNext(node);
-            node.setPrevious(previous);
-        }
-
+        
+        previous.setNext(node);
+        node.setPrevious(previous);
         node.setNext(existing);
         existing.setPrevious(node);
 
