@@ -51,7 +51,7 @@ public class DoublyLinkedList<T> implements LinkedList<T>
 
         Node<T> node = new Node<>(data);
         Node<T> previous = existing.getPrevious();
-        
+
         previous.setNext(node);
         node.setPrevious(previous);
         node.setNext(existing);
@@ -181,10 +181,10 @@ public class DoublyLinkedList<T> implements LinkedList<T>
     {
         T data = null;
 
-        if (getLastNode() != null) {
-            data = getLast();
+        Node<T> last = getLastNode();
 
-            Node<T> last = getLastNode();
+        if (last != null) {
+            data = getLast();
 
             last.getPrevious().setNext(null);
             last.setPrevious(null);
@@ -195,7 +195,7 @@ public class DoublyLinkedList<T> implements LinkedList<T>
     }
 
     /**
-     * Get the node at the given index.
+     * Get the data at a given index.
      * @param index of the desired node.
      * @return data of type T.
      */
