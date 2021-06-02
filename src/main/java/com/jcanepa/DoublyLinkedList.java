@@ -325,14 +325,13 @@ public class DoublyLinkedList<T> implements LinkedList<T>
     }
 
     /**
-     * Detach all nodes in the list.
+     * Detach the list's head and reset its size.
      */
     @Override
     public void clear()
     {
-        while (getFirstNode() != null) {
-            removeFirst();
-        }
+        head = null;
+        size = 0;
     }
 
     /**
