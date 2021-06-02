@@ -21,6 +21,40 @@ public class DoublyLinkedCircularList<T> extends DoublyLinkedList<T>
     }
 
     /**
+     * Remove the list node at a given index and return its data.
+     * @param index of the element to be removed.
+     * @return T data of the node removed.
+     */
+    @Override
+    public T remove(int index)
+    {
+        if (index == 0) {
+            return removeFirst();
+        }
+
+        if (index == (size() - 1)) {
+            return removeLast();
+        }
+
+        T data = null;
+
+        if (getNode(index) != null) {
+            Node<T> node = getNode(index);
+
+            node.getPrevious().setNext(
+                        node.getNext());
+
+            node.getNext().setPrevious(
+                    node.getPrevious());
+
+            data = node.getData();
+
+            decrementSize();
+        }
+        return data;
+    }
+
+    /**
      * Remove the last item in the list by detaching all
      * pointer references. Finally, return the removed node's data.
      * @return T data of the node removed.
@@ -55,32 +89,6 @@ public class DoublyLinkedCircularList<T> extends DoublyLinkedList<T>
     @Override
     protected void resetHeadPrevious() {
         linkFirstNodeToLast();
-    }
-
-    /**
-     * For nodes with a null next pointer (e.g. the list's last node), link to the first node.
-     * Otherwise default to the next node when it is set.
-     */
-    @Override
-    protected Node<T> getNextNode(Node<T> node)
-    {
-        if (node.getNext() == null) {
-            return getFirstNode();
-        }
-        return super.getNextNode(node);
-    }
-
-    /**
-     * For nodes with a null previous pointer (e.g. the list's first node), link to the last node.
-     * Otherwise default to the previous node when it is set.
-     */
-    @Override
-    protected Node<T> getPreviousNode(Node<T> node)
-    {
-        if (node.getPrevious() == null) {
-            return getLastNode();
-        }
-        return super.getPreviousNode(node);
     }
 
     /**

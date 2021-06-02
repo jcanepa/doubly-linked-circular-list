@@ -121,21 +121,18 @@ public class DoublyLinkedList<T> implements LinkedList<T>
             Node<T> node = getNode(index);
 
             if (node.hasPrevious()) {
-                getPreviousNode(node).setNext(
-                    getNextNode(node)
+                node.getPrevious().setNext(
+                    node.getNext()
                 );
             }
 
             if (node.hasNext()) {
-                getNextNode(node).setPrevious(
-                    getPreviousNode(node)
+                node.getNext().setPrevious(
+                    node.getPrevious()
                 );
             }
 
             data = node.getData();
-
-            node.setPrevious(null);
-            node.setNext(null);
 
             decrementSize();
         }
@@ -223,7 +220,7 @@ public class DoublyLinkedList<T> implements LinkedList<T>
             int count = 0;
 
             while (count < index) {
-                node = getNextNode(node);
+                node = node.getNext();
                 count ++;
             }
 
@@ -272,24 +269,6 @@ public class DoublyLinkedList<T> implements LinkedList<T>
         return (size() > 0)
             ? getLastNode().getData()
             : null;
-    }
-
-    /**
-     * Get a given node's next pointer node.
-     * @param node to check.
-     * @return node next to a given node.
-     */
-    protected Node<T> getNextNode(Node<T> node) {
-        return node.getNext();
-    }
-
-    /**
-     * Get a given node's previous pointer node.
-     * @param node to check.
-     * @return node previous to a given node.
-     */
-    protected Node<T> getPreviousNode(Node<T> node) {
-        return node.getPrevious();
     }
 
     /**
