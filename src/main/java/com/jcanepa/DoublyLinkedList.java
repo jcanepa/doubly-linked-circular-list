@@ -358,15 +358,14 @@ public class DoublyLinkedList<T> implements LinkedList<T>
     }
 
     /**
-     * Replaces the node at a specified list position with the specified element.
+     * Updates the node at a given list position with new data.
      * @param index of node to replace.
      * @param data of type T to replace the existing node with.
      */
     @Override
     public void set(int index, T data)
     {
-        remove(index);
-        add(index, data);
+        getNode(index).setData(data);
     }
 
     /**
@@ -418,6 +417,10 @@ public class DoublyLinkedList<T> implements LinkedList<T>
 
         public T getData() {
             return data;
+        }
+
+        private void setData(T data) {
+            this.data = data;
         }
 
         protected Node<T> getNext() {
