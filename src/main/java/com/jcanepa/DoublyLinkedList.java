@@ -341,19 +341,21 @@ public class DoublyLinkedList<T> implements LinkedList<T>
      * @return if the list contains a given data.
      */
     @Override
-    public boolean contains(T data)
-    {
+    public boolean contains(T data) {
+        boolean isFound = false;
+
         Node<T> node = head;
         int count = 0;
 
         while (node != null && count < size()) {
             if (node.getData().equals(data)) {
-                return true;
+                isFound = true;
+                break;
             }
             node = node.getNext();
-            count ++;
+            count++;
         }
-        return false;
+        return isFound;
     }
 
     /**
